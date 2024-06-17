@@ -6,6 +6,7 @@ import Button from './Button'
 import CreateKudoForm from './CreateKudoForm'
 import Footer from './Footer'
 import { useState } from 'react'
+import CardList from './CardList'
 
 
 function App() {
