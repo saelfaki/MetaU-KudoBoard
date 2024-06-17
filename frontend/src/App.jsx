@@ -3,8 +3,12 @@ import React from 'react'
 import Header from './Header'
 import SearchBar from './SearchBar'
 import Button from './Button'
+import CreateKudoForm from './CreateKudoForm'
+import { useState } from 'react'
+
 
 function App() {
+  const [showForm, setShowForm] = useState(false);
 
 
   return (
@@ -17,7 +21,8 @@ function App() {
         <Button name ="Celebration"/>
         <Button name ="Thank You"/>
         <Button name ="Inspiration"/>
-        <Button name ="Create"/>
+        <Button name="Create A New Board" onClick={() => setShowForm(!showForm)} />
+        {showForm && <CreateKudoForm />}
       </div>
 
     </>
