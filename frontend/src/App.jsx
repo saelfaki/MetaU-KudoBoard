@@ -4,6 +4,7 @@ import Header from './Header'
 import SearchBar from './SearchBar'
 import Button from './Button'
 import CreateKudoForm from './CreateKudoForm'
+import Footer from './Footer'
 import { useState } from 'react'
 
 
@@ -24,6 +25,8 @@ function App() {
         <Button name="Create A New Board" onClick={() => setShowForm(!showForm)} />
         {showForm && <CreateKudoForm />}
       </div>
+
+      <Footer />
 
     </>
   )
