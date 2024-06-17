@@ -17,6 +17,7 @@ function App() {
         <Button name ="Celebration"/>
         <Button name ="Thank You"/>
         <Button name ="Inspiration"/>
+        <Button name ="Create"/>
       </div>
 
     </>
