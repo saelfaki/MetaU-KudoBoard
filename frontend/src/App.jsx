@@ -2,6 +2,7 @@ import './App.css'
 import React from 'react'
 import Header from './Header'
 import SearchBar from './SearchBar'
+import Button from './Button'
 
 function App() {
 
@@ -10,6 +11,13 @@ function App() {
     <>
       <Header />
       <SearchBar />
+      <div className="buttons">
+        <Button name ="All"/>
+        <Button name ="Recent"/>
+        <Button name ="Celebration"/>
+        <Button name ="Thank You"/>
+        <Button name ="Inspiration"/>
+      </div>
 
     </>
   )
