@@ -7,13 +7,21 @@ import CreateKudoForm from './CreateKudoForm'
 import Footer from './Footer'
 import { useState } from 'react'
 import CardList from './CardList'
+import BoardList from './BoardList'
 
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [displayBoard, setDisplayBoard] = useState(false);
+
+  function handleDisplayBoard(){
+    setDisplayBoard(!displayBoard);
+  }
 
 
   return (
+    <div className='App'>
+      {!displayBoard ?
     <>
       <Header />
       <SearchBar />
@@ -26,10 +34,13 @@ function App() {
         <Button name="Create A New Board" onClick={() => setShowForm(!showForm)} />
         {showForm && <CreateKudoForm />}
       </div>
+      <BoardList handleDisplayBoard={handleDisplayBoard}/>
 
       <Footer />
 
-    </>
+    </> :
+    <CardList handleDisplayBoard={handleDisplayBoard}/>}
+    </div>
   )
 }
 

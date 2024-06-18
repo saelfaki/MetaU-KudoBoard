@@ -4,9 +4,9 @@
     border-radius: 5px;
 }
 
-.board img{
-    width: 200px;
-    height: 300px;
+.board-pic{
+    width: 100px;
+    height: 100px;
 }
 
 .delete-and-view{

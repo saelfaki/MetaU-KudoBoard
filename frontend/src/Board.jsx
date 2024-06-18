@@ -1,9 +1,10 @@
 import React from "react";
+import "./Board.css";
 
 function Board(props) {
     return(
         <div className="board">
-            <img src="../public/G5398.png" />
+            <img  className="board-pic" src="../public/G5398.png" />
             <h3>Title</h3>
             <p>Category</p>
         <div className="delete-and-view">
