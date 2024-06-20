@@ -8,8 +8,6 @@ const SearchBar = (props) => {
         setSearchTerm(e.target.value);
         if (searchTerm>0) {
             props.search(searchTerm)
-
-            // props.emptySearchBar(e.target.value);
         } else{
             props.fetchDisplayBoard()
         }
