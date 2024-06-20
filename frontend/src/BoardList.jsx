@@ -1,21 +1,20 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './BoardList.css';
 import Board from "./Board";
 
-
 function BoardList(props){
+
+        function createBoard(board){
+            return(
+                <Board key={board.id} createBoard={props.handleDisplayBoard} image_url={board.image_url} title={board.title} category={board.category} />
+            )
+        }
+
+
     return(
         <div className="board-list">
-            <Board displayBoard={props.handleDisplayBoard}/>
-            <Board displayBoard={props.handleDisplayBoard}/>
-            <Board displayBoard={props.handleDisplayBoard}/>
-            <Board displayBoard={props.handleDisplayBoard}/>
-            <Board displayBoard={props.handleDisplayBoard}/>
-            <Board displayBoard={props.handleDisplayBoard}/>
-            <Board displayBoard={props.handleDisplayBoard}/>
+            {props.setBoards.map(createBoard)}
         </div>
     )
 }
-
 export default BoardList;
