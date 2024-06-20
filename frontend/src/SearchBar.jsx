@@ -6,8 +6,12 @@ const SearchBar = (props) => {
 
     function handleChange(e) {
         setSearchTerm(e.target.value);
-        if (e.target.value === '') {
-            props.emptySearchBar(e.target.value);
+        if (searchTerm>0) {
+            props.search(searchTerm)
+
+            // props.emptySearchBar(e.target.value);
+        } else{
+            props.fetchDisplayBoard()
         }
     }
         return (

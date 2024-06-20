@@ -69,7 +69,7 @@ function App() {
         <>
           {showForm ? <CreateKudoForm refreshBoards={fetchDisplayBoard} showForm={handleDisplayForm}/> : null }
           <Header />
-          <SearchBar  search={handleSearchDisplay} handleSearchDisplay={handleSearchDisplay}  emptySearchBar={emptySearchBar}/>
+          <SearchBar  search={handleSearchDisplay} handleSearchDisplay={handleSearchDisplay}  fetchDisplayBoard={fetchDisplayBoard}/>
           <div className="buttons">
             <Button name ="All"/>
             <Button name ="Recent"/>
