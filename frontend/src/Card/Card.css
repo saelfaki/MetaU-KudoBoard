@@ -1,11 +1,12 @@
 .card{
     padding: 20px;
-    border: 5px ridge pink;
+    border: 5px ridge rgb(191, 158, 249);
     background-color: rgb(240, 220, 242);
+    margin: 10px;
 }
 
 .card img{
-    width: 200px;
+    width: 250px;
     height: 220px;
 }
 
@@ -13,4 +14,8 @@
     display: flex;
     gap: 20px;
     justify-content: center;
+}
+
+.deleteCardBtn{
+    background-color: rgb(255, 165, 165);
 }

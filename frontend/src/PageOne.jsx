@@ -1,4 +1,4 @@
-import './App.css'
+import './PageOne.css'
 import React, { useEffect } from 'react'
 import Header from './Header'
 import SearchBar from './SearchBar'
@@ -113,6 +113,7 @@ function PageOne() {
       {(!displayBoard) ? (
         <>
           {showForm ? <CreateKudoForm refreshBoards={fetchDisplayBoard} showForm={handleDisplayForm}/> : null }
+
           <Header />
           <SearchBar  search={handleSearchDisplay} handleSearchDisplay={handleSearchDisplay}  fetchDisplayBoard={fetchDisplayBoard}/>
           <div className="buttons">
@@ -121,9 +122,10 @@ function PageOne() {
             <Filter name ="Celebration" handleFilterBoards={() => setFilter('Celebration')}/>
             <Filter name ="Thank You" handleFilterBoards={() => setFilter('Thank You')}/>
             <Filter name ="Inspiration" handleFilterBoards={() => setFilter('Inspiration')}/>
-            <Button name="Create A New Board" showForm={handleDisplayForm}  />
+
 
           </div>
+          <Button name="Create A New Board" showForm={handleDisplayForm}  />
           <BoardList handleDeletedBoard={handleDeletedBoard} handleDisplayBoard={handleDisplayBoard} setBoards={filterBoards} />
 
           <Footer />

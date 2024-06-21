@@ -42,11 +42,11 @@ function Card(props) {
         <p>{props.author}</p>
         <div className='card-buttons'>
             <button onClick={()=>handleLikeClick()}>{unLike}</button><span id="like-count">{likeCount}💗</span>
-            <button onClick={()=>props.deleteCard()}>Delete</button>
+            <button className='deleteCardBtn' onClick={()=>props.deleteCard()}>Delete</button>
         </div>
         <div className="comments">
         {comments.map((comment) => (
-          <p key={comment.id}>{comment.comment}</p>
+          <p key={comment.id}>{comment.message}</p>
         ))}
         <input
           type="text"

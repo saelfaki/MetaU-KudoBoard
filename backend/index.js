@@ -86,7 +86,7 @@ app.post('/boards/:id/:category/cards', async (req, res) => {
         message,
         author,
         board: {connect:{id: parseInt(boardId)}},
-        likeCount
+        likeCount: 0
       }
     })
     res.json(newCard)
@@ -122,13 +122,16 @@ app.post('/boards/:id/:category/cards', async (req, res) => {
     res.json(deletedBoard)
   })
 
-  app.delete('/boards/:id/:category/cards/:cardId', async (req, res) => {
-    const cardId  = req.params.cardId
+  app.delete('/boards/:id/cards/:cardId', async (req, res) => {
+    const cardId  = parseInt(req.params.cardId)
+    await prisma.comment.deleteMany({where: {cardId}})
     const deletedCard = await prisma.card.delete({
       where: { id: parseInt(cardId) }
     })
     res.json(deletedCard)
   })
+
+
 
   app.get('/boards/search/:query', async (req, res) => {
     const { query } = req.params

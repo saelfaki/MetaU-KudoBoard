@@ -1,11 +1,12 @@
 
 footer {
-    background-color: rgb(220, 157, 209);
+  background-image: url("public/banner.jpg");
+    /* background-color: rgb(220, 157, 209); */
     padding: 5px;
     justify-content: flex-end;
     margin-bottom: 0px;
     bottom: 0;
     width: 100%;
-    color: white;
+    color: black;
     text-align: center;
   }

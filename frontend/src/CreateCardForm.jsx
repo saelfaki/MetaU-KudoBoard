@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 function CreateCardForm(props) {
     const [cards, setCards] = useState([]);
+    const [likeCount, setLikeCount] = useState(0);
 
     async function addCard(inputMessage, inputAuthor) {
 

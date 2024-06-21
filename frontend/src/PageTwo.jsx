@@ -43,13 +43,13 @@ function PageTwo() {
   return (
 
     <div>
-       {showCardForm ? <CreateCardForm id={id} category={category} refreshCards={fetchDisplayCards} showCardForm={handleDisplayCardForm}/> : null }
+       {showCardForm ? <CreateCardForm refreshCards={fetchDisplayCards} id={id} category={category}  showCardForm={handleDisplayCardForm}/> : null }
       <Link to={`/`}>
       <button  className="home-btn">Home</button>
       </Link>
       <button className="Create A New Card"
        onClick={() => handleDisplayCardForm()}>Create A New Card</button>
-        <CardList  likeCount={likeCount} setLikeCount={setLikeCount} setCards={cards} boardId={id} category={category}/>
+        <CardList  refreshCards={fetchDisplayCards} fetchDisplayCards={fetchDisplayCards} likeCount={likeCount} setLikeCount={setLikeCount} setCards={cards} boardId={id} category={category}/>
     </div>
   )
 }

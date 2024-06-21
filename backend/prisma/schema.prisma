@@ -33,5 +33,5 @@ model Comment{
   id  Int  @id @default(autoincrement())
   message String
   card     Card   @relation(fields:[cardId], references:[id])
-  cardId   Int
+  cardId   Int @default(0)
 }
