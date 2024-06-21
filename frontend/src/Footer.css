@@ -1,9 +1,9 @@
 
 footer {
   background-image: url("public/banner.jpg");
-    /* background-color: rgb(220, 157, 209); */
     padding: 5px;
     justify-content: flex-end;
+    margin-top: 10px;
     margin-bottom: 0px;
     bottom: 0;
     width: 100%;

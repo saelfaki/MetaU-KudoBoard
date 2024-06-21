@@ -30,7 +30,6 @@ function PageOne() {
       });
       if(response.ok){
         fetchDisplayBoard();
-        handleDisplayBoard();
       }
     }catch(err){
       console.log(err);

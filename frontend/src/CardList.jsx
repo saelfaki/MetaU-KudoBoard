@@ -24,6 +24,7 @@ function CardList(props){
       }
 
       async function fetchDisplayCards(boardId, category){
+        console.log("id", boardId);
         const response = await fetch(`http://localhost:3000/boards/${boardId}/${category}/cards`,{
           method: 'GET',
           headers: {

@@ -13,8 +13,9 @@ function PageTwo() {
 
   const { id, category } = useParams();
 
-  async function fetchDisplayCards(id, category){
-    const response = await fetch(`http://localhost:3000/boards/${id}/${category}/cards`,{
+  async function fetchDisplayCards(boardId, category){
+    console.log("id", id);
+    const response = await fetch(`http://localhost:3000/boards/${boardId}/${category}/cards`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -28,8 +29,8 @@ function PageTwo() {
 
 
   useEffect(() => {
-    fetchDisplayCards(id);
-  }, [id]);
+    fetchDisplayCards();
+  }, []);
 
 
   function handleDisplayCardForm(){
