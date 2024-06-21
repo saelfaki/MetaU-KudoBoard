@@ -9,7 +9,7 @@ function CreateCardForm(props) {
 
     async function addCard(inputMessage, inputAuthor) {
 
-      const response = await fetch(`http://localhost:3000/boards/${props.id}/${props.category}/cards`, {
+      const response = await fetch(`${import.meta.VITE_BACKEND_URL}/${props.id}/${props.category}/cards`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

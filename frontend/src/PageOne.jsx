@@ -21,7 +21,7 @@ function PageOne() {
 
   async function handleDeletedBoard(boardId){
     try{
-      const response = await fetch(`http://localhost:3000/boards/${boardId}`,{
+      const response = await fetch(`${import.meta.VITE_BACKEND_URL}/boards/${boardId}`,{
         method: "DELETE",
         header:{
           "Content-Type":"application/json",
@@ -67,7 +67,7 @@ function PageOne() {
 
 
   async function fetchDisplayBoard(){
-    const response = await fetch('http://localhost:3000/boards',{
+    const response = await fetch(`${import.meta.VITE_BACKEND_URL}/boards`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ function PageOne() {
 
 
   async function handleSearchDisplay(query){
-    const response = await fetch(`http://localhost:3000/boards/search/${query}`,{
+    const response = await fetch(`${import.meta.VITE_BACKEND_URL}/boards/search/${query}`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
