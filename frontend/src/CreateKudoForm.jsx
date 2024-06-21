@@ -6,7 +6,7 @@ function CreateKudoForm(props) {
   const [board, setBoard] = useState([]);
   async function addKudoBoard(inputTitle, inputCategory, inputAuthor) {
       console.log(inputTitle, inputCategory);
-      const response = await fetch(`${import.meta.VITE_BACKEND_URL}/boards`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -15,7 +15,7 @@ function PageTwo() {
 
   async function fetchDisplayCards(boardId, category){
     console.log("id", id);
-    const response = await fetch(`${import.meta.VITE_BACKEND_URL}/boards/${boardId}/${category}/cards`,{
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards/${boardId}/${category}/cards`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

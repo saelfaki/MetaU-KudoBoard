@@ -7,7 +7,7 @@ function CardList(props){
 
     async function deleteCard(boardId, cardId){
         try{
-          const response = await fetch(`${import.meta.VITE_BACKEND_URL}/boards/${boardId}/cards/${cardId}`,{
+          const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards/${boardId}/cards/${cardId}`,{
             method: 'DELETE',
             headers:{
               'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ function CardList(props){
 
       async function fetchDisplayCards(boardId, category){
         console.log("id", boardId);
-        const response = await fetch(`${import.meta.VITE_BACKEND_URL}boards/${boardId}/${category}/cards`,{
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}boards/${boardId}/${category}/cards`,{
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -22,7 +22,7 @@ function Card(props) {
 
   const handleCommentSubmit = async () => {
     console.log("newComment", newComment);
-    const response = await fetch(`${import.meta.VITE_BACKEND_URL}/boards/${props.boardId}/${props.category}/cards/${props.id}/comments`, {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards/${props.boardId}/${props.category}/cards/${props.id}/comments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
