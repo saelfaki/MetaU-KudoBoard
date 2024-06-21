@@ -1,14 +1,14 @@
 import './Card.css'
 
 
-function Card() {
+function Card(props) {
 
 
   return (
     <div className="card">
-        <p>Text Message</p>
-        <img src="" alt=''/>
-        <p>Card Author</p>
+        <p>{props.message}</p>
+        <img src={props.image_url}alt=''/>
+        <p>{props.author}</p>
         <div className='card-buttons'>
             <button>Like</button>
             <button>Delete</button>

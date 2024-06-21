@@ -32,7 +32,7 @@ async function getCardImage(category) {
 
 
 
-app.get('/boards/:id/cards', async (req, res) => {
+app.get('/boards/:id/:category/cards', async (req, res) => {
   const cards = await prisma.card.findMany();
   res.json(cards);
 });
@@ -42,18 +42,23 @@ app.get('/boards', async (req, res) => {
   res.json(boards);
 });
 
-app.post('/boards/:id/cards', async (req, res) => {
-    if (!req.body.message|| !req.body.author || !req.body.imageUrl) {
+app.post('/boards/:id/:category/cards', async (req, res) => {
+    if (!req.body.message|| !req.body.author) {
         return res.status(400).send('Enter all required data.')
     }
     else{
-    const { imageUrl, message, author } = req.body
-    const newCard = await prisma.board.create({
+      const { message, author, boardId, category } = req.body
+      const cardBoard = await prisma.board.findUnique({
+        where: {id: parseInt(boardId)},
+      })
+    const image_url = await getCardImage(category)
+    const newCard = await prisma.card.create({
       data: {
-        imageUrl,
+        image_url,
         message,
         author,
-        boardId: {connect: {id: req.params.id}}
+        board: {connect:{id: parseInt(boardId)}}
+        // boardId: {connect: {id: req.params.id}}
       }
     })
     res.json(newCard)
@@ -80,17 +85,19 @@ app.post('/boards/:id/cards', async (req, res) => {
 });
 
   app.delete('/boards/:id', async (req, res) => {
-    const { id } = req.params
+    const boardId  = req.params.id
+    console.log(boardId);
+    const deleteCards = await prisma.card.deleteMany({where: {boardID: parseInt(boardId)}})
     const deletedBoard = await prisma.board.delete({
-      where: { id: Number(id) }
+      where: { id: parseInt(boardId) }
     })
     res.json(deletedBoard)
   })
 
-  app.delete('/boards/:id/cards', async (req, res) => {
-    const { id } = req.params
+  app.delete('/boards/:id/:category/cards/:cardId', async (req, res) => {
+    const cardId  = req.params.cardId
     const deletedCard = await prisma.card.delete({
-      where: { id: Number(id) }
+      where: { id: parseInt(cardId) }
     })
     res.json(deletedCard)
   })

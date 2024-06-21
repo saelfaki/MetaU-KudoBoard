@@ -19,15 +19,17 @@ function PageOne() {
   const [filter, setFilter] = useState('all');
 
 
-  async function handleDeletedBoard(id){
+  async function handleDeletedBoard(boardId){
     try{
-      const response = await fetch(`https://localhost:3000/boards/${id}`,{
+      const response = await fetch(`http://localhost:3000/boards/${boardId}`,{
         method: "DELETE",
         header:{
           "Content-Type":"application/json",
         },
+      body: JSON.stringify({id : boardId})
       });
       if(response.ok){
+        fetchDisplayBoard();
         handleDisplayBoard();
       }
     }catch(err){
@@ -42,15 +44,19 @@ function PageOne() {
 
 
   async function handleFilterBoards(){
-    if (filter === 'all'){
+    console.log('Filter:', filter);
+    if (filter === 'All'){
       setFilterBoards(boards);
-    } else if (filter === 'recent'){
+      console.log(boards);
+    } else if (filter === 'Recent'){
       const sortBoards = boards.sort((a,b) => b - a);
       const lastThreeBoards = sortBoards.slice(0,3);
       setFilterBoards(lastThreeBoards);
+      console.log(lastThreeBoards)
     } else{
-      const filteredBoards = boards.filter(board => board.category === filter);
-      setFilterBoards(filteredBoards);
+      const filteringBoards = boards.filter(board => board.category.toLowerCase() === filter.toLowerCase());
+      setFilterBoards(filteringBoards);
+      console.log(filteringBoards);
     }
   }
 
@@ -70,6 +76,9 @@ function PageOne() {
     console.log(data);
     setBoards(data);
   }
+
+
+
 
 
   async function handleSearchDisplay(query){
@@ -113,7 +122,7 @@ function PageOne() {
             <Button name="Create A New Board" showForm={handleDisplayForm}  />
 
           </div>
-          <BoardList handleDisplayBoard={handleDisplayBoard} setBoards={boards} handleDeletedBoard={handleDeletedBoard}/>
+          <BoardList handleDeletedBoard={handleDeletedBoard} handleDisplayBoard={handleDisplayBoard} setBoards={filterBoards} />
 
           <Footer />
 
