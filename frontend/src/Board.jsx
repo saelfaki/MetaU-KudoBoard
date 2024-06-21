@@ -13,7 +13,7 @@ function Board(props) {
             <p>{props.category}</p>
             <div className="delete-and-view">
                 <button onClick={()=>props.handleDeletedBoard(props.id)} className="delete-btn">Delete</button>
-                <Link to={`/boards/${props.id}/${props.category}/cards`}>
+                <Link to={`/boards/${props.id}/cards`}>
                 <button onClick={()=>props.displayBoard} className="view-btn">View</button>
                 </Link>
             </div>

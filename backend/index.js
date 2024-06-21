@@ -56,11 +56,7 @@ app.post('/boards/:id/:category/cards/:cardId/comments', async (req, res) => {
 
 
 
-
-
-
-
-app.get('/boards/:id/:category/cards', async (req, res) => {
+app.get('/boards/:id/cards', async (req, res) => {
   const cards = await prisma.card.findMany();
   res.json(cards);
 });
@@ -70,7 +66,7 @@ app.get('/boards', async (req, res) => {
   res.json(boards);
 });
 
-app.post('/boards/:id/:category/cards', async (req, res) => {
+app.post('/boards/:id/cards', async (req, res) => {
     if (!req.body.message|| !req.body.author) {
         return res.status(400).send('Enter all required data.')
     }

@@ -10,7 +10,7 @@ function App() {
       <Router>
       <Routes>
         <Route path="/" element={<PageOne />} />
-        <Route path="/boards/:id/:category/cards" element={<PageTwo />} />
+        <Route path="/boards/:id/cards" element={<PageTwo />} />
       </Routes>
     </Router>
     )}
