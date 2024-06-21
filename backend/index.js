@@ -31,6 +31,34 @@ async function getCardImage(category) {
 }
 
 
+app.get('/boards/:id/:category/cards/:id/comments', async (req, res) => {
+  const cardId = req.params.cardId;
+
+  const comments = await prisma.comment.findMany({
+    where: { cardId: parseInt(cardId) },
+  });
+  console.log(comments)
+  res.json(comments);
+});
+
+app.post('/boards/:id/:category/cards/:cardId/comments', async (req, res) => {
+  console.log(req)
+  const cardId = req.params.cardId;
+  const comment = req.body.comment;
+  const newComment = await prisma.comment.create({
+    data: {
+      message: comment,
+      card: { connect: { id: parseInt(cardId) } }
+    },
+  });
+  res.json(newComment);
+});
+
+
+
+
+
+
 
 app.get('/boards/:id/:category/cards', async (req, res) => {
   const cards = await prisma.card.findMany();
@@ -47,7 +75,7 @@ app.post('/boards/:id/:category/cards', async (req, res) => {
         return res.status(400).send('Enter all required data.')
     }
     else{
-      const { message, author, boardId, category } = req.body
+      const { message, author, boardId, category, likeCount } = req.body
       const cardBoard = await prisma.board.findUnique({
         where: {id: parseInt(boardId)},
       })
@@ -57,8 +85,8 @@ app.post('/boards/:id/:category/cards', async (req, res) => {
         image_url,
         message,
         author,
-        board: {connect:{id: parseInt(boardId)}}
-        // boardId: {connect: {id: req.params.id}}
+        board: {connect:{id: parseInt(boardId)}},
+        likeCount
       }
     })
     res.json(newCard)
@@ -114,6 +142,7 @@ app.post('/boards/:id/:category/cards', async (req, res) => {
     })
     res.json(boards)
   })
+
 
 
   app.listen(port, () => {

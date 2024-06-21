@@ -25,4 +25,13 @@ model Card{
   author String
   board Board @relation(fields:[boardID], references:[id])
   boardID Int
+  likeCount Int
+  comments Comment[]
+}
+
+model Comment{
+  id  Int  @id @default(autoincrement())
+  message String
+  card     Card   @relation(fields:[cardId], references:[id])
+  cardId   Int
 }

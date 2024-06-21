@@ -16,7 +16,7 @@ function PageOne() {
   const [boards, setBoards] = useState([])
   const [query, setQuery] = useState('');
   const [filterBoards , setFilterBoards] = useState([]);
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState('All');
 
 
   async function handleDeletedBoard(boardId){
@@ -36,6 +36,8 @@ function PageOne() {
       console.log(err);
     }
   }
+
+
 
   useEffect(() => {
     fetchDisplayBoard();

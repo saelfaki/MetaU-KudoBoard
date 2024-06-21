@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import CreateCardForm from './CreateCardForm';
+import './PageTwo.css';
 
 function PageTwo() {
   const [cards, setCards] = useState([])
   const [showCardForm, setShowCardForm] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
 
   const { id, category } = useParams();
 
@@ -22,7 +24,6 @@ function PageTwo() {
     console.log(data);
     setCards(data);
   }
-
 
 
 
@@ -47,13 +48,11 @@ function PageTwo() {
       <button  className="home-btn">Home</button>
       </Link>
       <button className="Create A New Card"
-       showCardForm={handleDisplayCardForm}
        onClick={() => handleDisplayCardForm()}>Create A New Card</button>
-        <CardList setCards={cards}/>
+        <CardList  likeCount={likeCount} setLikeCount={setLikeCount} setCards={cards} boardId={id} category={category}/>
     </div>
   )
 }
 
-// showCardForm={handleDisplayCardForm}
 
 export default PageTwo

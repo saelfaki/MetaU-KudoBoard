@@ -13,7 +13,7 @@ function CreateCardForm(props) {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({message: inputMessage,  author: inputAuthor, boardId: props.id, category: props.category})
+        body: JSON.stringify({message: inputMessage,  author: inputAuthor, boardId: props.id, category: props.category, likeCount: props.likeCount})
 
       })
       console.log(response);
@@ -39,7 +39,7 @@ function CreateCardForm(props) {
 
 
                 <input type="text" placeholder="Author" />
-                <button className="create-button">Create Board</button>
+                <button className="create-button">Create Card</button>
             </form>
         </div>
 

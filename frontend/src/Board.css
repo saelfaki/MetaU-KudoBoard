@@ -2,11 +2,12 @@
     border: 1px solid black;
     padding: 10px;
     border-radius: 5px;
+    background-color: white;
 }
 
 .board-pic{
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 150px;
 }
 
 .delete-and-view{
@@ -17,4 +18,8 @@
 .delete-btn{
     background-color: red;
     color: white;
+}
+
+.board:hover{
+    transform: scale(1.2);
 }
