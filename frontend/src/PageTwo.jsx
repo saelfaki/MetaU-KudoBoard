@@ -21,7 +21,6 @@ function PageTwo() {
       },
     })
     const data = await response.json();
-    console.log(data);
     setCards(data);
   }
 
@@ -53,6 +52,7 @@ function PageTwo() {
         <CardList  refreshCards={()=>fetchDisplayCards(id)} fetchDisplayCards={()=>fetchDisplayCards(id)} likeCount={likeCount} setLikeCount={setLikeCount} setCards={cards} boardId={id} />
     </div>
   )
+
 }
 
 

@@ -4,8 +4,8 @@ import { useState } from "react";
 
 function CreateKudoForm(props) {
   const [board, setBoard] = useState([]);
+
   async function addKudoBoard(inputTitle, inputCategory, inputAuthor) {
-      console.log(inputTitle, inputCategory);
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards`, {
         method: 'POST',
         headers: {
@@ -14,9 +14,7 @@ function CreateKudoForm(props) {
         body: JSON.stringify({title: inputTitle, category: inputCategory, author: inputAuthor})
 
       })
-      console.log(response);
       const data = await response.json();
-      console.log(data);
       setBoard([...board, data]);
       props.refreshBoards();
   }
@@ -41,10 +39,6 @@ function CreateKudoForm(props) {
                     <option value="thank you">Thank You</option>
                     <option value="inspiration">Inspiration</option>
                 </select>
-
-
-
-
                 <input type="text" placeholder="Author" />
                 <button className="create-button">Create Board</button>
             </form>

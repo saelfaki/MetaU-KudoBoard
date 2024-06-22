@@ -6,7 +6,6 @@ function Filter(props) {
      onClick={() =>
         props.handleFilterBoards()}>
             {props.name}</button>
-
   );
 }
 

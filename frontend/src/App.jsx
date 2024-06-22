@@ -7,7 +7,7 @@ function App() {
 
 
   return (
-      <Router>
+    <Router>
       <Routes>
         <Route path="/" element={<PageOne />} />
         <Route path="/boards/:id/cards" element={<PageTwo />} />

@@ -16,21 +16,18 @@ function Card(props) {
       setLikeCount(likeCount - 1);
       setUnLike("Like")
     }
-
   };
 
 
   const handleCommentSubmit = async () => {
-    console.log("newComment", newComment);
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards/${props.boardId}/cards/${props.id}/comments`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ comment: newComment }),
-    });
+    } );
     const data = await response.json();
-    console.log(data)
     setComments([...comments, data]);
     setNewComment('');
   };
@@ -57,6 +54,7 @@ function Card(props) {
       </div>
     </div>
   )
+
 }
 
 export default Card;

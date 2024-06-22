@@ -45,19 +45,15 @@ function PageOne() {
 
 
   async function handleFilterBoards(){
-    console.log('Filter:', filter);
     if (filter === 'All'){
       setFilterBoards(boards);
-      console.log(boards);
     } else if (filter === 'Recent'){
       const sortBoards = boards.sort((a,b) => b - a);
       const lastThreeBoards = sortBoards.slice(0,3);
       setFilterBoards(lastThreeBoards);
-      console.log(lastThreeBoards)
     } else{
       const filteringBoards = boards.filter(board => board.category.toLowerCase() === filter.toLowerCase());
       setFilterBoards(filteringBoards);
-      console.log(filteringBoards);
     }
   }
 
@@ -74,7 +70,6 @@ function PageOne() {
       },
     })
     const data = await response.json();
-    console.log(data);
     setBoards(data);
   }
 
@@ -90,7 +85,6 @@ function PageOne() {
       },
     })
     const data = await response.json();
-    console.log(data);
     setBoards(data);
   }
 

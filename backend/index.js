@@ -33,42 +33,55 @@ async function getCardImage(category) {
 
 app.get('/boards/:id/:category/cards/:id/comments', async (req, res) => {
   const cardId = req.params.cardId;
-
-  const comments = await prisma.comment.findMany({
+  try{
+    const comments = await prisma.comment.findMany({
     where: { cardId: parseInt(cardId) },
   });
-  console.log(comments)
   res.json(comments);
+  }catch(err){
+    res.status(500).json({err: 'Internal Server Error'})
+  }
 });
 
-app.post('/boards/:id/:category/cards/:cardId/comments', async (req, res) => {
-  console.log(req)
+app.post('/boards/:id/cards/:cardId/comments', async (req, res) => {
   const cardId = req.params.cardId;
   const comment = req.body.comment;
-  const newComment = await prisma.comment.create({
+  try{
+    const newComment = await prisma.comment.create({
     data: {
       message: comment,
       card: { connect: { id: parseInt(cardId) } }
     },
   });
   res.json(newComment);
+  }catch(err){
+  res.status(500).json({err: 'Internal Server Error'})
+  }
 });
 
 
 
 app.get('/boards/:id/cards', async (req, res) => {
   const boardId  = req.params.id
-  const cards = await prisma.card.findMany({where: {boardID: parseInt(boardId)}})
-  console.log("were inside of cards");
-  res.json(cards);
+  try{
+    const cards = await prisma.card.findMany({where: {boardID: parseInt(boardId)}})
+    res.json(cards);
+  }catch(err){
+    res.status(500).json({err: 'Internal Server Error'})
+  }
 });
 
 app.get('/boards', async (req, res) => {
-  const boards = await prisma.board.findMany();
-  res.json(boards);
+  try{
+    const boards = await prisma.board.findMany();
+    res.json(boards);
+  }catch(err){
+    res.status(500).json({err: 'Internal Server Error'})
+  }
 });
 
 app.post('/boards/:id/cards', async (req, res) => {
+  try{
     if (!req.body.message) {
         return res.status(400).send('Enter all required data.')
     }
@@ -77,7 +90,7 @@ app.post('/boards/:id/cards', async (req, res) => {
       const cardBoard = await prisma.board.findUnique({
         where: {id: parseInt(boardId)},
       })
-    const image_url = await getCardImage(category)
+    const image_url = await getCardImage(cardBoard.category)
     const newCard = await prisma.card.create({
       data: {
         image_url,
@@ -89,13 +102,16 @@ app.post('/boards/:id/cards', async (req, res) => {
     })
     res.json(newCard)
     }
+    }catch(err){
+      res.status(500).json({err: 'Internal Server Error'})
+    }
   })
 
   app.post('/boards', async (req, res) => {
     const { title, category, author } = req.body
     const image_url = await getCardImage(category)
     try{
-    const newBoard = await prisma.board.create({
+      const newBoard = await prisma.board.create({
       data: {
         title,
         category,
@@ -105,47 +121,57 @@ app.post('/boards/:id/cards', async (req, res) => {
     })
     res.json(newBoard)
     } catch (err) {
-        console.log(err)
         res.status(500).send({err: 'Internal Server Error'})
     }
 });
 
   app.delete('/boards/:id', async (req, res) => {
     const boardId  = req.params.id
-    console.log(boardId);
-    const deleteCards = await prisma.card.deleteMany({where: {boardID: parseInt(boardId)}})
-    const deletedBoard = await prisma.board.delete({
+    try{
+      const deleteCards = await prisma.card.deleteMany({where: {boardID: parseInt(boardId)}})
+      const deletedBoard = await prisma.board.delete({
       where: { id: parseInt(boardId) }
     })
     res.json(deletedBoard)
-  })
+    }catch (err) {
+      res.status(500).send({err: 'Internal Server Error'})
+    }
+})
 
   app.delete('/boards/:id/cards/:cardId', async (req, res) => {
     const cardId  = parseInt(req.params.cardId)
-    await prisma.comment.deleteMany({where: {cardId}})
-    const deletedCard = await prisma.card.delete({
+    try{
+      await prisma.comment.deleteMany({where: {cardId}})
+      const deletedCard = await prisma.card.delete({
       where: { id: parseInt(cardId) }
     })
     res.json(deletedCard)
-  })
+    }catch (err) {
+      res.status(500).send({err: 'Internal Server Error'})
+    }
+})
 
 
 
   app.get('/boards/search/:query', async (req, res) => {
     const { query } = req.params
-    const boards = await prisma.board.findMany({
+    try{
+      const boards = await prisma.board.findMany({
       where: {
         title: {
           contains: query,
           mode: 'insensitive'
         }
-    }
+      }
     })
     res.json(boards)
-  })
+    }catch (err) {
+      res.status(500).send({err: 'Internal Server Error'})
+    }
+})
 
 
 
-  app.listen(port, () => {
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-  });
+});
