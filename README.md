@@ -3,7 +3,6 @@
 
 Submitted by: Saja Elfaki
 
-Deployed Application (optional): https://metau-kudoboard-1.onrender.com/
 
 ### Application Features
 
@@ -41,8 +40,8 @@ Deployed Application (optional): https://metau-kudoboard-1.onrender.com/
     - [ ]  Anonymous cards or cards by guest users should still be allowed.
   - [ ] Add a new filter option on the home page to display only the current user's boards.
   - [ ] Allow boards to be deleted only if they are owned by the user.
-- [ X] **Deployment**
-  - [X ] Website is deployed via Render.
+- [ ] **Deployment**
+  - [ ] Website is deployed via Render.
 - [ X] **Comments**
   - [X ] Users should be able to comment on cards.
 
