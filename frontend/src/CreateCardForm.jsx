@@ -14,7 +14,7 @@ function CreateCardForm(props) {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({message: inputMessage,  author: inputAuthor, boardId: props.id, category: props.category, likeCount: props.likeCount})
+        body: JSON.stringify({message: inputMessage,  author: inputAuthor, boardId: props.id, likeCount: props.likeCount})
 
       })
       console.log(response);

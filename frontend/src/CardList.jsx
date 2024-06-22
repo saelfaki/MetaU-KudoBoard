@@ -14,7 +14,7 @@ function CardList(props){
             },
           });
           if(response.ok){
-            fetchDisplayCards()
+            props.fetchDisplayCards()
             props.refreshCards();
 
           }
@@ -23,22 +23,22 @@ function CardList(props){
         }
       }
 
-      async function fetchDisplayCards(boardId, category){
-        console.log("id", boardId);
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards/${boardId}/${category}/cards`,{
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        const data = await response.json();
-        console.log(data);
-        setCards(data);
-      }
+    //   async function fetchDisplayCards(boardId, category){
+    //     console.log("id", boardId);
+    //     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/boards/${boardId}/${category}/cards`,{
+    //       method: 'GET',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     })
+    //     const data = await response.json();
+    //     console.log(data);
+    //     setCards(data);
+    //   }
 
       useEffect(() => {
-        fetchDisplayCards(props.boardId, props.category);
-      }, [props.boardId, props.category]);
+        props.fetchDisplayCards();
+      }, []);
 
 
 
@@ -49,7 +49,7 @@ function CardList(props){
 
     function createCard(card){
         return(
-            <Card fetchDisplayCards={fetchDisplayCards} key={card.id} id={card.id} boardId={props.boardId} category={props.category} deleteCard={()=> deleteCard(props.boardId, card.id)} image_url={card.image_url} message={card.message} author={card.author} handleLikeClick={handleLikeClick} likeCount={card.likeCount}/>
+            <Card fetchDisplayCards={props.fetchDisplayCards} key={card.id} id={card.id} boardId={props.boardId}  deleteCard={()=> deleteCard(props.boardId, card.id)} image_url={card.image_url} message={card.message} author={card.author} handleLikeClick={handleLikeClick} likeCount={card.likeCount}/>
         );
     }
 

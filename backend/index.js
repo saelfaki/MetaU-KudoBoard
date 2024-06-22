@@ -57,7 +57,9 @@ app.post('/boards/:id/:category/cards/:cardId/comments', async (req, res) => {
 
 
 app.get('/boards/:id/cards', async (req, res) => {
-  const cards = await prisma.card.findMany();
+  const boardId  = req.params.id
+  const cards = await prisma.card.findMany({where: {boardID: parseInt(boardId)}})
+  console.log("were inside of cards");
   res.json(cards);
 });
 
@@ -67,11 +69,11 @@ app.get('/boards', async (req, res) => {
 });
 
 app.post('/boards/:id/cards', async (req, res) => {
-    if (!req.body.message|| !req.body.author) {
+    if (!req.body.message) {
         return res.status(400).send('Enter all required data.')
     }
     else{
-      const { message, author, boardId, category, likeCount } = req.body
+      const { message, author, boardId, likeCount } = req.body
       const cardBoard = await prisma.board.findUnique({
         where: {id: parseInt(boardId)},
       })
